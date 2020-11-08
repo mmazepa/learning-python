@@ -6,12 +6,16 @@ def isNumber(number):
             return float(number)
         except ValueError:
             print("Please type a number.")
-            exit();
 
-num1 = input("Enter num1: ")
-num1 = isNumber(num1)
-num2 = input("Enter num2: ")
-num2 = isNumber(num2)
+def typeCorrectNumberLoop(index):
+    number = ""
+    while (not isinstance(number, int)) and (not isinstance(number, float)):
+        number = input("Enter number " + str(index) + ": ")
+        number = isNumber(number)
+    return number;
+
+num1 = typeCorrectNumberLoop(1)
+num2 = typeCorrectNumberLoop(2)
 
 print(str(num1) + " + " + str(num2) + " = " + str(num1 + num2))
 print(str(num1) + " - " + str(num2) + " = " + str(num1 - num2))
