@@ -1,4 +1,5 @@
-from text_based_user_interface import framedText, textWithIndent, log, newLine
+from lib.text_based_user_interface import framedText, textWithIndent, log, newLine
+from lib.elementary_arithmetic import add, subtract, multiply, divide
 
 def header():
     print("     ____      _            _       _             ")
@@ -22,18 +23,6 @@ def typeCorrectNumberLoop(index):
         number = input("   Enter number " + str(index) + ": ")
         number = isNumber(number)
     return number;
-
-def add(num1, num2):
-    return num1 + num2
-
-def subtract(num1, num2):
-    return num1 - num2
-
-def multiply(num1, num2):
-    return num1 * num2
-
-def divide(num1, num2):
-    return num1 / num2
 
 def mainMenu(num1, num2):
     sign = ""
