@@ -1,42 +1,11 @@
+from text_based_user_interface import framedText, textWithIndent, log, newLine
+
 def header():
     print("     ____      _            _       _             ")
     print("    / ___|__ _| | ___ _   _| | __ _| |_ ___  _ __ ")
     print("   | |   / _` | |/ __| | | | |/ _` | __/ _ \| '__|")
     print("   | |__| (_| | | (__| |_| | | (_| | || (_) | |   ")
     print("    \____\__,_|_|\___|\__,_|_|\__,_|\__\___/|_| \n")
-
-def framedText(text):
-    length = len(text)+2
-    print("   ╔", end="")
-    for x in range(0, length):
-        if x < length-1:
-            print("═", end="")
-        else:
-            print("═╗")
-    print("   ║ " + text + " ║")
-    print("   ╚", end="")
-    for x in range(0, length):
-        if x < length-1:
-            print("═", end="")
-        else:
-            print("═╝")
-
-def printText(text, framed):
-    if framed:
-        framedText(text)
-    else:
-        print(text)
-
-def textWithIndent(text, indent):
-    for x in range(0, indent):
-        print(" ", end="")
-    print(text)
-
-def log(type, content):
-    textWithIndent("[" + type + "]: " + content, 3)
-
-def newLine():
-    print("")
 
 def isNumber(number):
     try:
