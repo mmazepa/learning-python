@@ -43,3 +43,6 @@ def clear():
         system("cls")
     else:
         system("clear")
+
+def pressAnyKey():
+    inputWithIndent("Press any key to continue...", 3)

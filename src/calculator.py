@@ -1,7 +1,8 @@
-from lib.text_based_user_interface import framedText, textWithIndent, inputWithIndent, log, newLine, clear
+from lib.text_based_user_interface import framedText, textWithIndent, inputWithIndent, log, newLine, clear, pressAnyKey
 from lib.elementary_arithmetic import add, subtract, multiply, divide
 
 appTurnedOn = True
+calculations = []
 
 def header():
     print("     ____      _            _       _             ")
@@ -26,7 +27,7 @@ def typeCorrectNumberLoop(index):
         number = isNumber(number)
     return number;
 
-def mainMenu(num1, num2):
+def calculation(num1, num2):
     sign = ""
     function = ""
     arithmetic_operators = ["+", "-", "*", "/"]
@@ -44,25 +45,59 @@ def mainMenu(num1, num2):
             log("INFO", "Please type an arithmetic operator.")
     newLine()
     textWithIndent("Your result is:", 3)
-    textWithIndent(str(num1) + " " + sign + " " + str(num2) + " = " + str(function(num1, num2)), 6)
+    calculation = str(num1) + " " + sign + " " + str(num2) + " = " + str(function(num1, num2))
+    global calculations
+    calculations.append(calculation)
+    textWithIndent(calculation, 6)
+
+def calculationMenu():
+    calculation(typeCorrectNumberLoop(1), typeCorrectNumberLoop(2))
+    newLine()
+    pressAnyKey()
+
+def viewHistory():
+    framedText("HISTORY")
+    newLine()
+    global calculations
+    if len(calculations) == 0:
+        textWithIndent("There is no calculations in history.", 3)
+    else:
+        index = 1
+        textWithIndent("History of calculations length: " + str(len(calculations)) ,3)
+        newLine()
+        for calculation in calculations:
+            textWithIndent("[" + str(index) + "] " + calculation, 6)
+            index += 1
+    newLine()
 
 while (appTurnedOn):
     clear()
     header()
     framedText("Welcome in the calculator with text-based user interface.")
     newLine()
-    mainMenu(typeCorrectNumberLoop(1), typeCorrectNumberLoop(2))
+    # global calculations
+    log("INFO", "Calculator was used " + str(len(calculations)) + " times.")
     newLine()
 
+    textWithIndent("What do you want to do?", 3)
+    textWithIndent("1. Calculation", 6)
+    textWithIndent("2. View history", 6)
+    textWithIndent("3. Exit", 6)
+
     while (True):
-        tryAgain = input("   Want to try again? [yes/no] ")
-        if tryAgain == "yes" or tryAgain == "y":
-            inputWithIndent("Okay, press any key to continue...", 3)
+        action = inputWithIndent("Decision:", 3);
+        if (action == "1"):
+            newLine()
+            calculationMenu()
             break
-        elif tryAgain == "no" or tryAgain == "n":
+        elif (action == "2"):
+            newLine()
+            viewHistory()
+            pressAnyKey()
+            break
+        elif (action == "3"):
             log("INFO", "Okay, goodbye and have a nice day!")
-            appTurnedOn = False
-            break
+            newLine()
+            quit();
         else:
-            log("INFO", "Unrecognised option, type \"yes\"/\"no\" or \"y\"/\"n\".")
-    newLine()
+            log("INFO", "Unrecognised option, type \"1\" (calculation) or \"2\" (view history).")
