@@ -1,3 +1,5 @@
+from os import system, name
+
 def framedText(text):
     length = len(text)+2
     print("   ╔", end="")
@@ -30,3 +32,9 @@ def log(type, content):
 
 def newLine():
     print("")
+
+def clear():
+    if name == "nt":
+        system("cls")
+    else:
+        system("clear")

@@ -1,5 +1,7 @@
-from lib.text_based_user_interface import framedText, textWithIndent, log, newLine
+from lib.text_based_user_interface import framedText, textWithIndent, log, newLine, clear
 from lib.elementary_arithmetic import add, subtract, multiply, divide
+
+appTurnedOn = True
 
 def header():
     print("     ____      _            _       _             ")
@@ -44,9 +46,20 @@ def mainMenu(num1, num2):
     textWithIndent("Your result is:", 3)
     textWithIndent(str(num1) + " " + sign + " " + str(num2) + " = " + str(function(num1, num2)), 6)
 
-header()
-framedText("Welcome in the calculator with text-based user interface.")
-newLine()
-
-mainMenu(typeCorrectNumberLoop(1), typeCorrectNumberLoop(2))
-newLine()
+while (appTurnedOn):
+    clear()
+    header()
+    framedText("Welcome in the calculator with text-based user interface.")
+    newLine()
+    mainMenu(typeCorrectNumberLoop(1), typeCorrectNumberLoop(2))
+    newLine()
+    tryAgain = input("   Want to try again? [yes/no] ")
+    if tryAgain == "yes" or tryAgain == "y":
+        input("   Okay, press any key to continue...")
+    elif tryAgain == "no" or tryAgain == "n":
+        log("INFO", "Okay, goodbye and have a nice day!")
+        appTurnedOn = False
+    else:
+        log("INFO", "Unrecognised option, turning calculator off.")
+        appTurnedOn = False
+    newLine()
