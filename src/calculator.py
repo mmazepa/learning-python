@@ -1,4 +1,4 @@
-from lib.text_based_user_interface import framedText, textWithIndent, log, newLine, clear
+from lib.text_based_user_interface import framedText, textWithIndent, inputWithIndent, log, newLine, clear
 from lib.elementary_arithmetic import add, subtract, multiply, divide
 
 appTurnedOn = True
@@ -22,7 +22,7 @@ def isNumber(number):
 def typeCorrectNumberLoop(index):
     number = ""
     while (not isinstance(number, int)) and (not isinstance(number, float)):
-        number = input("   Enter number " + str(index) + ": ")
+        number = inputWithIndent("Enter number " + str(index) + ":", 3)
         number = isNumber(number)
     return number;
 
@@ -31,7 +31,7 @@ def mainMenu(num1, num2):
     function = ""
     arithmetic_operators = ["+", "-", "*", "/"]
     while (not sign in arithmetic_operators):
-        sign = input("   Enter arithmetic operator \"+\", \"-\", \"*\" or \"/\": ")
+        sign = inputWithIndent("Enter arithmetic operator \"+\", \"-\", \"*\" or \"/\":", 3)
         if sign == "+":
             function = add
         elif sign == "-":
@@ -53,13 +53,16 @@ while (appTurnedOn):
     newLine()
     mainMenu(typeCorrectNumberLoop(1), typeCorrectNumberLoop(2))
     newLine()
-    tryAgain = input("   Want to try again? [yes/no] ")
-    if tryAgain == "yes" or tryAgain == "y":
-        input("   Okay, press any key to continue...")
-    elif tryAgain == "no" or tryAgain == "n":
-        log("INFO", "Okay, goodbye and have a nice day!")
-        appTurnedOn = False
-    else:
-        log("INFO", "Unrecognised option, turning calculator off.")
-        appTurnedOn = False
+
+    while (True):
+        tryAgain = input("   Want to try again? [yes/no] ")
+        if tryAgain == "yes" or tryAgain == "y":
+            inputWithIndent("Okay, press any key to continue...", 3)
+            break
+        elif tryAgain == "no" or tryAgain == "n":
+            log("INFO", "Okay, goodbye and have a nice day!")
+            appTurnedOn = False
+            break
+        else:
+            log("INFO", "Unrecognised option, type \"yes\"/\"no\" or \"y\"/\"n\".")
     newLine()

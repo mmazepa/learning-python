@@ -27,6 +27,11 @@ def textWithIndent(text, indent):
         print(" ", end="")
     print(text)
 
+def inputWithIndent(text, indent):
+    for x in range(0, indent):
+        print(" ", end="")
+    return input(text + " ")
+
 def log(type, content):
     textWithIndent("[" + type + "]: " + content, 3)
 
