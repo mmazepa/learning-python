@@ -1,10 +1,11 @@
+from datetime import datetime
+import math
+
 from lib.text_based_user_interface import framedText, textWithIndent, inputWithIndent, log, newLine, clear, pressAnyKey, deleteLastLines
 from lib.elementary_arithmetic import add, subtract, multiply, divide
 
 appTurnedOn = True
 calculations = []
-for x in range (0, 41):
-    calculations.insert(0, str(x) + " + 1 = " + str(add(x, 1)))
 calculationsPerPage = 10
 
 def header():
@@ -49,7 +50,7 @@ def calculation(num1, num2):
     newLine()
     textWithIndent("Your result is:", 3)
     calculation = str(num1) + " " + sign + " " + str(num2) + " = " + str(function(num1, num2))
-    calculations.insert(0, calculation)
+    calculations.insert(0, [getCurrentDatetime(), calculation])
     textWithIndent(calculation, 6)
 
 def calculationMenu():
@@ -63,14 +64,14 @@ def viewHistory():
     if len(calculations) == 0:
         textWithIndent("There is no calculations in history.", 3)
     else:
-        textWithIndent("History of calculations length: " + str(len(calculations)) ,3)
+        textWithIndent("History of calculations length: " + str(len(calculations)), 3)
         newLine()
-        pages = int((len(calculations)/calculationsPerPage)+1)
+        pages = int(math.ceil(len(calculations)/calculationsPerPage))
         for page in range(0, pages):
             textWithIndent("Page " + str(page + 1) + "/" + str(pages), 3)
             newLine()
             for index in range(page*calculationsPerPage, (page+1)*calculationsPerPage):
-                textWithIndent("[" + str(index+1) + "] " + calculations[index], 6)
+                textWithIndent("[" + calculations[index][0] + "] " + calculations[index][1], 6)
                 if len(calculations) == index+1:
                     break
             if page != pages-1:
@@ -78,6 +79,11 @@ def viewHistory():
                 pressAnyKey()
                 deleteLastLines(14)
     newLine()
+
+def getCurrentDatetime():
+    now = datetime.now()
+    dt_string = now.strftime("%Y.%m.%d %H:%M:%S")
+    return dt_string
 
 while (appTurnedOn):
     clear()
