@@ -1,4 +1,8 @@
 from os import system, name
+import sys
+
+CURSOR_UP_ONE = "\x1b[1A"
+ERASE_LINE = "\x1b[2K"
 
 def framedText(text):
     length = len(text)+2
@@ -46,3 +50,8 @@ def clear():
 
 def pressAnyKey():
     inputWithIndent("Press any key to continue...", 3)
+
+def deleteLastLines(numOfLines):
+    for _ in range(0, numOfLines):
+        sys.stdout.write(CURSOR_UP_ONE)
+        sys.stdout.write(ERASE_LINE)
