@@ -47,7 +47,10 @@ def appendGuessedLetter(guess, guessed):
 hangmanDatabase = [
     "Spider",
     "Crocodile",
-    "Programming"
+    "Programming",
+    "Jazz",
+    "Fluff",
+    "Rhythm"
 ]
 
 number = random.randint(0, len(hangmanDatabase)-1)
@@ -77,8 +80,7 @@ while (True):
         for i in range(0, 2):
             newLine()
 
-    printWithSpaces(convertToUnderscores(word, board), 3)
-    printWithSpaces(board, 3);
+    printWithSpaces(convertToUnderscores(word, board).upper(), 3)
     newLine()
     textWithIndent("Tries left: " + str(tries), 3)
     textWithIndent("Guessed letters:", 3)
@@ -88,7 +90,13 @@ while (True):
         textWithIndent("-", 6)
     newLine()
 
-    if isTheEnd(board) or tries == 0:
+    if isTheEnd(board):
+        textWithIndent("Congratulations! You have won!", 3)
+        newLine()
+        break
+    elif tries == 0:
+        textWithIndent("Game Over! But don't worry, keep trying!", 3)
+        newLine()
         break
 
     guess = inputWithIndent("Guess the letter:", 3)
