@@ -1,7 +1,7 @@
 import random
 
 from lib.text_based_user_interface import framedText, textWithIndent, inputWithIndent, log, newLine, clear
-from lib.number_validation import isNumber, typeCorrectNumberLoop
+from lib.number_validation import typeCorrectNumberLoop
 
 def header():
     textWithIndent(" _____                 _____ _       _____           _           ", 3)

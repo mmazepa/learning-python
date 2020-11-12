@@ -3,18 +3,18 @@ import math
 
 from lib.text_based_user_interface import framedText, textWithIndent, inputWithIndent, log, newLine, clear, pressAnyKey, deleteLastLines
 from lib.elementary_arithmetic import add, subtract, multiply, divide
-from lib.number_validation import isNumber, typeCorrectNumberLoop
+from lib.number_validation import typeCorrectNumberLoop
 
 appTurnedOn = True
 calculations = []
 calculationsPerPage = 10
 
 def header():
-    print("     ____      _            _       _             ")
-    print("    / ___|__ _| | ___ _   _| | __ _| |_ ___  _ __ ")
-    print("   | |   / _` | |/ __| | | | |/ _` | __/ _ \| '__|")
-    print("   | |__| (_| | | (__| |_| | | (_| | || (_) | |   ")
-    print("    \____\__,_|_|\___|\__,_|_|\__,_|\__\___/|_| \n")
+    textWithIndent("  ____      _            _       _             ", 3)
+    textWithIndent(" / ___|__ _| | ___ _   _| | __ _| |_ ___  _ __ ", 3)
+    textWithIndent("| |   / _` | |/ __| | | | |/ _` | __/ _ \| '__|", 3)
+    textWithIndent("| |__| (_| | | (__| |_| | | (_| | || (_) | |   ", 3)
+    textWithIndent(" \____\__,_|_|\___|\__,_|_|\__,_|\__\___/|_|   ", 3)
 
 def calculation(num1, num2):
     sign = ""
@@ -73,6 +73,8 @@ def getCurrentDatetime():
 while (appTurnedOn):
     clear()
     header()
+    newLine()
+
     framedText("Welcome in the calculator with text-based user interface.")
     newLine()
     log("INFO", "Calculator was used " + str(len(calculations)) + " times.")
