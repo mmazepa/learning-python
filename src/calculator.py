@@ -3,6 +3,7 @@ import math
 
 from lib.text_based_user_interface import framedText, textWithIndent, inputWithIndent, log, newLine, clear, pressAnyKey, deleteLastLines
 from lib.elementary_arithmetic import add, subtract, multiply, divide
+from lib.number_validation import isNumber, typeCorrectNumberLoop
 
 appTurnedOn = True
 calculations = []
@@ -14,22 +15,6 @@ def header():
     print("   | |   / _` | |/ __| | | | |/ _` | __/ _ \| '__|")
     print("   | |__| (_| | | (__| |_| | | (_| | || (_) | |   ")
     print("    \____\__,_|_|\___|\__,_|_|\__,_|\__\___/|_| \n")
-
-def isNumber(number):
-    try:
-        return int(number)
-    except ValueError:
-        try:
-            return float(number)
-        except ValueError:
-            log("INFO", "Please type a number.")
-
-def typeCorrectNumberLoop(index):
-    number = ""
-    while (not isinstance(number, int)) and (not isinstance(number, float)):
-        number = inputWithIndent("Enter number " + str(index) + ":", 3)
-        number = isNumber(number)
-    return number;
 
 def calculation(num1, num2):
     sign = ""

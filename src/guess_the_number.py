@@ -1,6 +1,7 @@
 import random
 
 from lib.text_based_user_interface import framedText, textWithIndent, inputWithIndent, log, newLine, clear
+from lib.number_validation import isNumber, typeCorrectNumberLoop
 
 def header():
     textWithIndent(" _____                 _____ _       _____           _           ", 3)
@@ -13,20 +14,23 @@ header()
 newLine()
 
 number = random.randint(0, 100)
-# textWithIndent("THE NUMBER IS: " + str(number), 3)
-# newLine()
 framedText("Guess the number from 0 to 100. You'll get a hint if you miss.")
 newLine()
 
-times = 0;
+count = 1;
 
 while (True):
-    x = int(inputWithIndent("Guess the number: ", 3))
-    if x == number:
-        log("INFO", "Yes, you are correct! The number is " + str(x) + ".")
+    x = typeCorrectNumberLoop(count, "Guess the number, attempt no.")
+    if not x >= 0 or not x <= 100:
+        log("INFO", "The number is not from range [0-100].")
+        continue
+    elif x == number:
+        log(str(count), "Yes, you are correct! The number is " + str(x) + ".")
         newLine()
         break
     elif x < number:
-        log("INFO", "Number is greater than " + str(x) + ".")
+        log(str(count), "Number is greater than " + str(x) + ".")
     elif x > number:
-        log("INFO", "Number is lower than " + str(x) + ".")
+        log(str(count), "Number is lower than " + str(x) + ".")
+    newLine()
+    count += 1
