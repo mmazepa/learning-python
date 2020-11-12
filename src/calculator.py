@@ -30,6 +30,9 @@ def calculation(num1, num2):
             function = multiply
         elif sign == "/":
             function = divide
+            while num2 == 0:
+                log("INFO", "Division by zero is not allowed!")
+                num2 = typeCorrectNumberLoop(2, "Change number")
         else:
             log("INFO", "Please type an arithmetic operator.")
     newLine()
