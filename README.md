@@ -14,10 +14,13 @@ This repository is made for storing files while learning **Python**.
 **Available applications:**
 1. Hello World
 1. Simple Calculator
+1. Guess The Number
+1. Hangman
 
 **Available libraries:**
 1. Elementary arithmetic
 1. Text-based user interface (TUI)
+1. Number validation
 
 ## Technologies
 
