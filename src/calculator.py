@@ -5,7 +5,6 @@ from lib.text_based_user_interface import framedText, textWithIndent, inputWithI
 from lib.elementary_arithmetic import add, subtract, multiply, divide
 from lib.number_validation import typeCorrectNumberLoop
 
-appTurnedOn = True
 calculations = []
 calculationsPerPage = 10
 
@@ -73,7 +72,7 @@ def getCurrentDatetime():
     dt_string = now.strftime("%Y.%m.%d %H:%M:%S")
     return dt_string
 
-while (appTurnedOn):
+while (True):
     clear()
     header()
     newLine()
