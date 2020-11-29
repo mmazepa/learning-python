@@ -8,6 +8,14 @@ def header():
     tui.textWithIndent("|____/|__,|_| |__,|_____|_| |__,|_|_|_  |_|_|_|_|_  |", 3)
     tui.textWithIndent("                                    |___|       |___|", 3)
 
+def mainMenu():
+    tui.textWithIndent("What do you want to do?", 3)
+    tui.textWithIndent("1. Search by title, e.g. \"Star Wars\".", 6)
+    tui.textWithIndent("2. Search by actor's full name, e.g. \"Mark Hamill\".", 6)
+    tui.textWithIndent("3. Search by actress's full name, e.g. \"Carrie Fisher\".", 6)
+    tui.textWithIndent("4. Search by subject, e.g. \"Science Fiction\".", 6)
+    tui.textWithIndent("5. Exit", 6)
+
 def importDataset(path):
     data = pd.read_csv(path, sep=";", header=0, engine="python")
     df = pd.DataFrame(data)
@@ -42,8 +50,6 @@ def findMovieByName(df, name, gender):
         return findMovieByActor(df, name)
     elif gender == "female":
         return findMovieByActress(df, name)
-    else:
-        return None
 
 def findMovieBySubject(df, subject):
     return df.query("Subject == \"" + subject.title() + "\"")
@@ -56,16 +62,10 @@ while True:
     header()
     tui.newLine()
 
-    tui.framedText("Search the movie by actor's full name, e.g. \"Nicolas Cage\".")
+    tui.framedText("Search the movie by title, cast member or subject.")
     tui.newLine()
 
-    tui.textWithIndent("What do you want to do?", 3)
-    tui.textWithIndent("1. Search by title, e.g. \"Star Wars\".", 6)
-    tui.textWithIndent("2. Search by actor's full name, e.g. \"Mark Hamill\".", 6)
-    tui.textWithIndent("3. Search by actress's full name, e.g. \"Carrie Fisher\".", 6)
-    tui.textWithIndent("4. Search by subject, e.g. \"Science Fiction\".", 6)
-    tui.textWithIndent("5. Exit", 6)
-
+    mainMenu()
     decision = tui.inputWithIndent("Decision:", 3)
 
     if decision == "1":

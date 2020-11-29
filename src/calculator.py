@@ -15,6 +15,12 @@ def header():
     textWithIndent("| |__| (_| | | (__| |_| | | (_| | || (_) | |   ", 3)
     textWithIndent(" \____\__,_|_|\___|\__,_|_|\__,_|\__\___/|_|   ", 3)
 
+def mainMenu():
+    textWithIndent("What do you want to do?", 3)
+    textWithIndent("1. Calculation", 6)
+    textWithIndent("2. View history", 6)
+    textWithIndent("3. Exit", 6)
+
 def calculation(num1, num2):
     sign = ""
     function = ""
@@ -82,10 +88,7 @@ while (True):
     log("INFO", "Calculator was used " + str(len(calculations)) + " times.")
     newLine()
 
-    textWithIndent("What do you want to do?", 3)
-    textWithIndent("1. Calculation", 6)
-    textWithIndent("2. View history", 6)
-    textWithIndent("3. Exit", 6)
+    mainMenu()
 
     while (True):
         action = inputWithIndent("Decision:", 3)
