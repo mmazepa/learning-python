@@ -25,16 +25,15 @@ def importDataset(path):
 def filterColumns(df, columns):
     return df.filter(columns)
 
-def prepareActorName(actorName):
-    actorName = actorName.split(" ")
-    actorName = actorName[1] + ", " + actorName[0]
-    return actorName.title()
-
-def prepareActorName2(actorName):
-    actorName = actorName.split(", ")
+def prepareActorName(actorName, forSearch = True):
+    sign1 = " "
+    sign2 = ", "
+    if forSearch == False:
+        sign1, sign2 = sign2, sign1
+    actorName = actorName.split(sign1)
     if len(actorName) > 1:
-        actorName = actorName[1] + " " + actorName[0]
-    return str(actorName)
+        actorName = actorName[1] + sign2 + actorName[0]
+    return str(actorName).title()
 
 def findMovieByTitle(df, title):
     return df.query("Title.str.contains(\"" + title.title() + "\")")
@@ -105,10 +104,10 @@ while True:
             tui.textWithIndent("\"" + row["Title"] + "\" (" + row["Year"] + "), " + row["Subject"], 6)
             print("      ", end="")
             if isinstance(row["Actor"], str):
-                print(prepareActorName2(row["Actor"]), end="")
+                print(prepareActorName(row["Actor"], False), end="")
             if isinstance(row["Actress"], str):
                 print(", ", end="")
-                print(prepareActorName2(row["Actress"]), end="")
+                print(prepareActorName(row["Actress"], False), end="")
             count += 1
             tui.newLine()
 
