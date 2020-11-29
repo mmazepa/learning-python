@@ -17,7 +17,7 @@ number = random.randint(0, 100)
 framedText("Guess the number from 0 to 100. You'll get a hint if you miss.")
 newLine()
 
-count = 1;
+count = 1
 
 while (True):
     x = typeCorrectNumberLoop(count, "Guess the number, attempt no.")

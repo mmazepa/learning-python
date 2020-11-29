@@ -88,7 +88,7 @@ while (True):
     textWithIndent("3. Exit", 6)
 
     while (True):
-        action = inputWithIndent("Decision:", 3);
+        action = inputWithIndent("Decision:", 3)
         if (action == "1"):
             newLine()
             calculationMenu()
@@ -101,6 +101,6 @@ while (True):
         elif (action == "3"):
             log("INFO", "Okay, goodbye and have a nice day!")
             newLine()
-            quit();
+            quit()
         else:
             log("INFO", "Unrecognised option, type \"1\" (calculation) or \"2\" (view history).")
